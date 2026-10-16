@@ -1,0 +1,78 @@
+
+import streamlit as st
+
+st.set_page_config(
+    page_title="AI Fake News Detection",
+    page_icon="📰"
+)
+
+st.title("📰 AI-Based Fake News Detection")
+st.write("Test the application with 8 sample news examples.")
+
+examples = [
+    {
+        "id": 1,
+        "news": "A viral message claims that drinking a special liquid cures every disease overnight.",
+        "label": "FAKE",
+    },
+    {
+        "id": 2,
+        "news": "The official weather department issued a rainfall warning for the region.",
+        "label": "REAL",
+    },
+    {
+        "id": 3,
+        "news": "The government published an official notice announcing examination dates.",
+        "label": "REAL",
+    },
+    {
+        "id": 4,
+        "news": "A university website published its official admission schedule.",
+        "label": "REAL",
+    },
+    {
+        "id": 5,
+        "news": "A social media post claims every student will receive free money without any application or official notice.",
+        "label": "FAKE",
+    },
+    {
+        "id": 6,
+        "news": "A forwarded message claims schools nationwide are permanently closed tomorrow, without an official announcement.",
+        "label": "FAKE",
+    },
+    {
+        "id": 7,
+        "news": "The official examination board published the results on its website.",
+        "label": "REAL",
+    },
+    {
+        "id": 8,
+        "news": "A viral post claims that a person can become a millionaire in one day by sharing a secret code.",
+        "label": "FAKE",
+    },
+]
+
+st.subheader("Sample News Examples")
+
+for item in examples:
+    with st.expander(f"Example {item['id']}"):
+        st.write(item["news"])
+        if item["label"] == "FAKE":
+            st.error("Expected demo result: FAKE NEWS")
+        else:
+            st.success("Expected demo result: REAL NEWS")
+
+st.divider()
+st.subheader("Test Your Own News")
+
+news = st.text_area("Enter a news headline or article:")
+
+if st.button("Check News"):
+    if news.strip():
+        st.info(
+            "Demo mode: This text has not been verified. "
+            "Connect a trained machine-learning model to "
+            "generate a prediction for new text."
+        )
+    else:
+        st.warning("Please enter some news text.")
